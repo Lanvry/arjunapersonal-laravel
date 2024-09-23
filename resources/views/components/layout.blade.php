@@ -9,13 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ $css }}">
 
-    <title>Arjuna Personal | {{$title}}</title>
+    <title>Arjuna Personal | {{ $title }}</title>
 </head>
 
 <body>
+    <div class="dotted"></div>
     <div class="backdropblur"></div>
     <div class="nav-popup" id="navbar">
         <button onclick="navbaroff()"><ion-icon name="close-outline"></ion-icon></button>
@@ -39,9 +39,9 @@
     </div>
     <div class="isi">
         <div id="display">
-            <img src="{{$image}}" class="display-img" alt="">
+            <img src="{{ $image }}" class="display-img" alt="">
             <div class="display-text ">
-                <h1>{{$prologue}}</h1>
+                <h1>{{ $prologue }}</h1>
                 <a href="#readmore"><button>READ MORE</button></a>
             </div>
             <div class="social-media ">
@@ -61,12 +61,12 @@
         <!-- akhir display -->
         <!-- body -->
 
-        {{$slot}}
+        {{ $slot }}
 
 
         <div id="contact" class="card contact-me ">
             <h3><b>Contact Me</b></h3>
-            <form action="" method="post">
+            <form action="{{url('contact')}}" method="post">
                 <div class="row row-cols-1 row-cols-md-2">
                     <div class="col">
                         <label for="" class="label-control">Nama Lengkap</label>
@@ -164,15 +164,55 @@
         window.addEventListener("scroll", () => {
             handleScrollAnimation();
         });
+        const bob = document.querySelectorAll('.dotted')[0];
 
+        let mouseX = 0;
+        let mouseY = 0;
+
+        let ballX = 0;
+        let ballY = 0;
+
+        let speed = 0.1; //how fast ball catches up to mouse pointer;
+
+        function animate() {
+            let distX = mouseX - ballX;
+            let distY = mouseY - ballY;
+
+            ballX = ballX + (distX * speed);
+            ballY = ballY + (distY * speed);
+
+            bob.style.left = ballX + 'px';
+            bob.style.top = ballY + 'px';
+
+            requestAnimationFrame(animate)
+
+        };
+
+        animate();
+
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+        });
+
+        document.addEventListener('click', function(e) {
+            e.preventDefault;
+            bob.classList.remove('active');
+            //some rando comment
+
+            void bob.offsetWidth;
+
+            bob.classList.add('active');
+
+        }, false);
     </script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ $js }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

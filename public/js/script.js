@@ -99,3 +99,11 @@
     
        }
     });
+
+        // Menghilangkan parameter 'i' dari URL
+if (window.history.replaceState) {
+   const url = new URL(window.location.href);
+   url.searchParams.delete('i');
+   window.history.replaceState(null, '', url.href);
+}
+

@@ -1,0 +1,78 @@
+*{
+    margin: 0px;
+    /* border: 1px solid; */
+    padding: 0px;
+}
+
+body{
+    background-color: rgb(235, 235, 235);
+    font-family: 'Clash Grotesk', sans-serif;
+}
+.container{
+    padding: 40px 200px;
+}
+
+.container h1{
+    font-weight: 800 !important;
+    font-size: 40px;
+}
+
+.container p{
+    position: relative;
+    top: -10px;
+    font-weight: light;
+    font-style: italic;
+}
+
+.card{
+    padding: 10px;
+    border-radius: 10px;
+    height: fit-content;
+    background-color: white;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.11);
+    transform: scale(1);
+    position: relative;
+    margin-bottom: 15px;
+    transition: 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.card:hover{
+    transform: scale(0.9);
+}
+
+.card img{
+    position: relative;
+    width: 50px;
+    border-radius: 50px;
+}
+
+.card p{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    font-size: 20px;
+    color: black !important;
+    font-weight: 600;
+    left: 50%;
+
+}
+
+.dotted {position:absolute; background: #000; opacity:60%; width:10px; height:10px; border-radius:50px; top:50%; left:50%; animation: pulse .5s cubic-bezier(.51,0,0.4,.5) alternate infinite; transform: translate(-50%,-50%) scale(1);   }
+
+@keyframes pulse {
+  from { width:10px;height:10px; }
+  to { width:15px; height:15px; }
+}
+
+.dotted.active { animation:bounce .5s ease; }
+@keyframes bounce {
+ 
+ 100%{ transform: translate(-50%,-50%) scale(2); opacity:0; }
+  0%{ transform: translate(-50%,-50%) scale(1); opacity:1; }
+}
+
+@media only screen and (max-width: 700px) {
+    .container{
+        padding: 10px;
+    }
+}
